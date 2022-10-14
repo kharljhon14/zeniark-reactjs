@@ -1,5 +1,9 @@
 # zeniark-reactjs
 
+### `cd client`
+
+Goes to the client directory.\
+
 ### `npm run serve`
 
 Runs the app in the development mode.\
