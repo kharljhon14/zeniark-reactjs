@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Question from "../../components/question";
+import { getRandomItemsInArray } from "../../helpers";
 import { fetchQuestions } from "../utils/thunks";
 
 export const questionsSlice = createSlice({
@@ -7,6 +7,7 @@ export const questionsSlice = createSlice({
    initialState: {
       questions: [],
       tenQuestions: [],
+      answers: [],
       currentQuestion: {},
       questionIndex: 0,
       score: 0,
@@ -16,14 +17,7 @@ export const questionsSlice = createSlice({
    },
    reducers: {
       getTenQuestions: (state, action) => {
-         const questions = [];
-
-         for (let i = 0; i < 10; i++) {
-            const randomIndex = Math.floor(Math.random() * state.questions.length);
-            questions.push(state.questions[randomIndex]);
-         }
-
-         state.tenQuestions = questions;
+         getRandomItemsInArray(10, state.questions, state.tenQuestions);
       },
 
       startQuiz: (state, action) => {
@@ -32,13 +26,25 @@ export const questionsSlice = createSlice({
       },
 
       nextQuestion: (state, action) => {
-         if (state.questionIndex < 9) {
-            state.questionIndex += 1;
-            state.currentQuestion = state.tenQuestions[state.questionIndex];
-            if (state.currentQuestion.correct_answer === action.payload) state.score += 1;
-         } else {
+         state.currentQuestion = state.tenQuestions[state.questionIndex];
+         state.answers.push(action.payload);
+
+         if (state.currentQuestion.correct_answer === action.payload) state.score += 1;
+
+         if (state.questionIndex < 9) state.questionIndex += 1;
+         else {
             state.ended = true;
+            state.currentQuestion = {};
          }
+      },
+      playAgain: (state, action) => {
+         state.questionIndex = 0;
+         state.score = 0;
+         state.answers = [];
+         state.tenQuestions = [];
+         getRandomItemsInArray(10, state.questions, state.tenQuestions);
+         state.currentQuestion = state.tenQuestions[state.questionIndex];
+         state.ended = false;
       },
    },
    extraReducers: (builder) => {
@@ -55,6 +61,6 @@ export const questionsSlice = createSlice({
    },
 });
 
-export const { getTenQuestions, startQuiz, nextQuestion } = questionsSlice.actions;
+export const { getTenQuestions, startQuiz, nextQuestion, playAgain } = questionsSlice.actions;
 
 export default questionsSlice.reducer;

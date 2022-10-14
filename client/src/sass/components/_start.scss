@@ -1,7 +1,7 @@
 .start {
    flex: 100%;
    display: flex;
-   height: 100%;
+   height: 70rem;
    flex-direction: column;
    align-items: center;
    justify-content: space-between;
@@ -22,7 +22,7 @@
       }
 
       &-subtitle {
-         font-size: 2.2rem;
+         font-size: 2rem;
          font-weight: 500;
       }
    }
@@ -40,25 +40,6 @@
          font-size: 3.5rem;
          border-radius: 1.5rem;
          margin-bottom: 5rem;
-      }
-
-      &-link:link,
-      &-link:visited {
-         color: #085696;
-         font-size: 3.5rem;
-         font-weight: 500;
-         text-transform: uppercase;
-         text-decoration: none;
-         position: relative;
-
-         &::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 0.4rem;
-            bottom: -.5rem;
-            background-color: #085696;
-         }
       }
    }
 }

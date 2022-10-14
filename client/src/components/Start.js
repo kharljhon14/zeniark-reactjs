@@ -15,9 +15,9 @@ const Start = () => {
          </div>
          <div className="start__content">
             <h3 className="start__content-title">Can you score 10/10</h3>
-            <a onClick={() => dispatch(startQuiz())} className="start__content-link" href="#">
+            <p onClick={() => dispatch(startQuiz())} className="start__content-link link">
                Lets Start!
-            </a>
+            </p>
          </div>
       </div>
    );

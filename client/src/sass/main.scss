@@ -1,6 +1,10 @@
 @import "./base/reset";
+@import "./components/loader";
 @import "./layouts/app";
 @import "./components/questionContainer";
 @import "./components/start";
 @import "./components/question";
+@import "./components/score";
+@import "./components/answerComparision";
 @import "./components/button";
+@import "./components/link";
