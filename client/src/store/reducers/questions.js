@@ -45,6 +45,7 @@ export const questionsSlice = createSlice({
          getRandomItemsInArray(10, state.questions, state.tenQuestions);
          state.currentQuestion = state.tenQuestions[state.questionIndex];
          state.ended = false;
+         state.start = false;
       },
    },
    extraReducers: (builder) => {
