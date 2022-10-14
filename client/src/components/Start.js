@@ -1,7 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import logo from "../assets/zeniark-logo.png";
+import { startQuiz } from "../store/reducers/questions";
 
 const Start = () => {
+   const dispatch = useDispatch();
+
    return (
       <div className="start">
          <img src={logo} alt="logo" className="start__logo" />
@@ -11,7 +15,9 @@ const Start = () => {
          </div>
          <div className="start__content">
             <h3 className="start__content-title">Can you score 10/10</h3>
-            <a className="start__content-link" href="/api/questions/allquestions">Lets Start!</a>
+            <a onClick={() => dispatch(startQuiz())} className="start__content-link" href="#">
+               Lets Start!
+            </a>
          </div>
       </div>
    );
