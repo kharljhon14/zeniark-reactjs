@@ -1,9 +1,13 @@
+const { urlencoded } = require("express");
 const express = require("express");
 const app = express();
 
 const routes = require("./routes");
 
-const PORT = 5000 || process.env.PORT;
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+
+const PORT = process.env.PORT || 5000;
 
 app.use("/api", routes);
 
